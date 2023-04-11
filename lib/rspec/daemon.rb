@@ -4,19 +4,23 @@ require_relative "daemon/version"
 
 require 'socket'
 require 'stringio'
+require 'rspec'
 
 module Rspec
-  module Daemon
+  class Daemon
     SCRIPT_NAME = File.basename(__FILE__).freeze
 
     class Error < StandardError; end
+
+    def self.start
+      self.new.start
+    end
 
     def start
       entry_point
     end
 
     def entry_point
-      RSpec::Core::Runner.disable_autorun!
       server = TCPServer.open('0.0.0.0', 3002)
 
       loop do
@@ -44,6 +48,7 @@ module Rspec
       options += ['--force-color']
       argv = msg.split(' ')
 
+      RSpec::Core::Runner.disable_autorun!
       RSpec.reset
       out = StringIO.new
       status = RSpec::Core::Runner.run(options + argv, out, out)
