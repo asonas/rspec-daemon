@@ -27,6 +27,7 @@ module RSpec
 
       RSpec::Core::Runner.disable_autorun!
       server = TCPServer.open("0.0.0.0", 3002)
+      puts "start tcp server"
 
       loop do
         handle_request(server.accept)
@@ -42,6 +43,7 @@ module RSpec
 
       socket.puts(status)
       socket.puts(out)
+      puts out
       socket.puts(__FILE__)
     rescue StandardError => e
       socket.puts e.full_message
@@ -50,7 +52,7 @@ module RSpec
     end
 
     def run(msg, options = [])
-      options += ["--force-color"]
+      options += ["--force-color", "--format", "documentation"]
       argv = msg.split(" ")
 
       reset
