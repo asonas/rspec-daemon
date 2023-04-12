@@ -2,9 +2,10 @@
 
 require_relative "daemon/version"
 
-require 'socket'
-require 'stringio'
-require 'rspec'
+require "socket"
+require "stringio"
+require "rspec"
+require "pry"
 
 module Rspec
   class Daemon
@@ -26,7 +27,7 @@ module Rspec
       loop do
         handle_request(server.accept)
       rescue Interrupt
-        puts 'quit'
+        puts "quit"
         server.close
         break
       end
@@ -45,8 +46,8 @@ module Rspec
     end
 
     def run(msg, options = [])
-      options += ['--force-color']
-      argv = msg.split(' ')
+      options += ["--force-color"]
+      argv = msg.split(" ")
 
       RSpec::Core::Runner.disable_autorun!
       RSpec.reset
@@ -70,4 +71,3 @@ module Rspec
     end
   end
 end
-
