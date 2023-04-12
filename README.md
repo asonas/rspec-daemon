@@ -8,14 +8,14 @@ https://gist.github.com/cumet04/71d7d76310f7cb436c68b57a7c99aae3
 ## Installation
 
 ```
-require 'rspec-daemon', require: false
+gem install rspec-daemon
 ```
 
 ## Usage
 
-
 ```
-$ bundle ex rspec-daemon
+$ cd YOUR_PROJECT
+$ rspec-daemon
 ```
 
 ```
