@@ -9,3 +9,5 @@
 
 # rspec failure tracking
 .rspec_status
+
+.rubocop-https---raw-githubusercontent-com-cookpad-styleguide-master--rubocop-yml
