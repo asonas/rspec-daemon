@@ -7,15 +7,17 @@ https://gist.github.com/cumet04/71d7d76310f7cb436c68b57a7c99aae3
 
 ## Installation
 
+In your Gemfile
+
 ```
-gem install rspec-daemon
+gem 'rspec-daemon', require: false
 ```
 
 ## Usage
 
 ```
 $ cd YOUR_PROJECT
-$ rspec-daemon
+$ bundle ex rspec-daemon
 ```
 
 ```
