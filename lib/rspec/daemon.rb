@@ -79,7 +79,7 @@ module RSpec
     end
 
     def cached_config
-      @cached_config ||= Rspec::Daemon::Configuration.new
+      @cached_config ||= RSpec::Daemon::Configuration.new
     end
 
     RSpec::Core::BacktraceFormatter.class_eval do

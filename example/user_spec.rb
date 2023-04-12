@@ -10,7 +10,7 @@ class User
   end
 end
 
-Rspec.describe "User" do
+RSpec.describe "User" do
   describe "#age" do
     before do
       @user = User.new(Time.new(1988, 11, 7))

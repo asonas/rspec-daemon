@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'rspec/daemon/cli'
-Rspec::Daemon::Cli.start
+RSpec::Daemon::Cli.start
