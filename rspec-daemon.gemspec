@@ -4,7 +4,7 @@ require_relative "lib/rspec/daemon/version"
 
 Gem::Specification.new do |spec|
   spec.name = "rspec-daemon"
-  spec.version = Rspec::Daemon::VERSION
+  spec.version = RSpec::Daemon::VERSION
   spec.authors = ["Yuya Fujiwara"]
   spec.email = ["asonas@cookpad.com"]
 

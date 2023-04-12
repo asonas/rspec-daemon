@@ -1,6 +1,6 @@
 require_relative '../daemon'
 
-module Rspec
+module RSpec
   class Daemon
     class Cli
       def start

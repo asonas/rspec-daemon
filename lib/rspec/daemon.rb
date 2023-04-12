@@ -7,7 +7,7 @@ require "stringio"
 require "rspec"
 require "pry"
 
-module Rspec
+module RSpec
   class Daemon
     SCRIPT_NAME = File.basename(__FILE__).freeze
 
