@@ -1,22 +1,26 @@
 # Rspec::Daemon
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rspec/daemon`. To experiment with that code, run `bin/console` for an interactive prompt.
+rspec-daemon is a gem to run specs at high speed.
 
-TODO: Delete this and the text above, and describe your gem
+The original idea can be found at the following URL @cumet04
+https://gist.github.com/cumet04/71d7d76310f7cb436c68b57a7c99aae3
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add rspec-daemon
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install rspec-daemon
+```
+require 'rspec-daemon', require: false
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+
+```
+$ bundle ex rspec-daemon
+```
+
+```
+$ echo 'spec/models/brand_spec.rb' | nc -v 0.0.0.0 3002
+```
 
 ## Development
 
