@@ -19,7 +19,7 @@ $ rspec-daemon
 ```
 
 ```
-$ echo 'spec/models/brand_spec.rb' | nc -v 0.0.0.0 3002
+$ echo 'spec/models/user_spec.rb' | nc -v 0.0.0.0 3002
 ```
 
 ## Development
