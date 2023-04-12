@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "daemon/version"
+require_relative "daemon/configuration"
 
 require "socket"
 require "stringio"
@@ -22,7 +23,10 @@ module RSpec
     end
 
     def entry_point
-      server = TCPServer.open('0.0.0.0', 3002)
+      $LOAD_PATH << "./spec"
+
+      RSpec::Core::Runner.disable_autorun!
+      server = TCPServer.open("0.0.0.0", 3002)
 
       loop do
         handle_request(server.accept)
@@ -49,12 +53,33 @@ module RSpec
       options += ["--force-color"]
       argv = msg.split(" ")
 
-      RSpec::Core::Runner.disable_autorun!
-      RSpec.reset
+      reset
       out = StringIO.new
       status = RSpec::Core::Runner.run(options + argv, out, out)
 
       [status, out.string]
+    end
+
+    def reset
+      RSpec::Core::Configuration.class_eval { define_method(:command) { "rspec" } }
+      RSpec::Core::Runner.disable_autorun!
+      RSpec.reset
+
+      if cached_config.has_recorded_config?
+        cached_config.replay_configuration
+      else
+        cached_config.record_configuration(&rspec_configuration)
+      end
+    end
+
+    def rspec_configuration
+      proc do
+        require "rails_helper"
+      end
+    end
+
+    def cached_config
+      @cached_config ||= Rspec::Daemon::Configuration.new
     end
 
     RSpec::Core::BacktraceFormatter.class_eval do
