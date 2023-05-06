@@ -6,7 +6,7 @@ class User
   end
 
   def age
-    34
+    (Time.now.strftime("%Y%m%d").to_i - self.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 end
 

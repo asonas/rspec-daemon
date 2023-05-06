@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
 gem 'rspec'
-gem 'rspec-daemon', path: '/Users/asonas@cookpad.com/ghq/github.com/asonas/rspec-daemon'
+gem 'rspec-daemon'
