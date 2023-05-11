@@ -76,7 +76,7 @@ module RSpec
 
     def rspec_configuration
       proc do
-        if defined?(::Rails)
+        if File.exist? "spec/rails_helper.rb"
           require "rails_helper"
         end
       end
