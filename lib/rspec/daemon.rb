@@ -11,6 +11,7 @@ require "pry"
 module RSpec
   class Daemon
     SCRIPT_NAME = File.basename(__FILE__).freeze
+    RSPEC_DAEMON_DEFAULT_PORT = 3002
 
     class Error < StandardError; end
 
@@ -26,8 +27,8 @@ module RSpec
       $LOAD_PATH << "./spec"
 
       RSpec::Core::Runner.disable_autorun!
-      server = TCPServer.open("0.0.0.0", 3002)
-      puts "start tcp server"
+      server = TCPServer.open("0.0.0.0", ENV.fetch("RSPEC_DAEMON_PORT", RSPEC_DAEMON_DEFAULT_PORT))
+      puts "Listening on port #{server.addr[1]}"
 
       loop do
         handle_request(server.accept)
