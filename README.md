@@ -15,11 +15,27 @@ gem 'rspec-daemon', require: false
 
 ## Usage
 
+Start the daemon process by running `rspec-daemon` in the directory where you would run `rspec`.
+
 ```
 $ cd YOUR_PROJECT
 $ bundle ex rspec-daemon
 Listening on tcp://0.0.0.0:3002
 ```
+
+To run specs, use the `rspecd` client tool.
+
+```
+$ bundle ex rspecd spec/models/user_spec.rb # arguments are passed to rspec
+
+User
+  is healthy
+
+Finished in 0.00136 seconds (files took 36.25 seconds to load)
+1 example, 0 failures
+```
+
+Alternatively, standard utilites such as `nc` may be used.
 
 ```
 $ echo 'spec/models/user_spec.rb' | nc -v 0.0.0.0 3002
