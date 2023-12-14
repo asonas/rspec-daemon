@@ -23,10 +23,10 @@ $ bundle ex rspec-daemon
 Listening on tcp://0.0.0.0:3002
 ```
 
-To run specs, use the `rspecd` client tool.
+To run specs, use the `rspeccc` client tool.
 
 ```
-$ bundle ex rspecd spec/models/user_spec.rb # arguments are passed to rspec
+$ bundle ex rspeccc spec/models/user_spec.rb # arguments are passed to rspec
 
 User
   is healthy
