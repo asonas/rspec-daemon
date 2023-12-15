@@ -43,6 +43,21 @@ $ echo 'spec/models/user_spec.rb' | nc -v 0.0.0.0 3002
 
 By default, `rspec-daemon` will run on port `3002`. You can adjust the port by passing `--port` to `rspec-daemon` or setting the `RSPEC_DAEMON_PORT` environment variable.
 
+### Auto-reloading application code in Rails
+
+If properly configured, rspec-daemon will automatically reload your application code (you probably want this behavior).
+Add the following code to `config/initializers/rspec_daemon.rb`:
+
+```ruby
+# rspec-daemon exposes RSPEC_DAEMON=1
+if Rails.env.test? && ENV['RSPEC_DAEMON']
+  Rails.configuration.enable_reloading = true
+end
+```
+
+If autoreloading is not configured, you'd need to restart `rspec-daemon` every time you change code under `app/`.
+Spec code (under `spec/`) will be always reloaded regardless of this setting.
+
 ## Editor integration
 
 ### Vim/Neovim
