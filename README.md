@@ -24,6 +24,8 @@ $ bundle ex rspec-daemon
 $ echo 'spec/models/user_spec.rb' | nc -v 0.0.0.0 3002
 ```
 
+By default, `rspec-daemon` will run on port `3002`. You can adjust the port by setting the `RSPEC_DAEMON_PORT` environment variable.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
