@@ -10,24 +10,20 @@ require "rspec"
 module RSpec
   class Daemon
     SCRIPT_NAME = File.basename(__FILE__).freeze
-    RSPEC_DAEMON_DEFAULT_PORT = 3002
 
     class Error < StandardError; end
 
-    def self.start
-      self.new.start
+    def initialize(bind_address, port)
+      @bind_address = bind_address
+      @port = port
     end
 
     def start
-      entry_point
-    end
-
-    def entry_point
       $LOAD_PATH << "./spec"
 
       RSpec::Core::Runner.disable_autorun!
-      server = TCPServer.open("0.0.0.0", ENV.fetch("RSPEC_DAEMON_PORT", RSPEC_DAEMON_DEFAULT_PORT))
-      puts "Listening on port #{server.addr[1]}"
+      server = TCPServer.open(@bind_address, @port)
+      puts "Listening on tcp://#{server.addr[2]}:#{server.addr[1]}"
 
       loop do
         handle_request(server.accept)

@@ -18,13 +18,14 @@ gem 'rspec-daemon', require: false
 ```
 $ cd YOUR_PROJECT
 $ bundle ex rspec-daemon
+Listening on tcp://0.0.0.0:3002
 ```
 
 ```
 $ echo 'spec/models/user_spec.rb' | nc -v 0.0.0.0 3002
 ```
 
-By default, `rspec-daemon` will run on port `3002`. You can adjust the port by setting the `RSPEC_DAEMON_PORT` environment variable.
+By default, `rspec-daemon` will run on port `3002`. You can adjust the port by passing `--port` to `rspec-daemon` or setting the `RSPEC_DAEMON_PORT` environment variable.
 
 ## Development
 
