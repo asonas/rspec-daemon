@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'rspec/daemon/client_cli'
-exit RSpec::Daemon::ClientCli.run(ARGV)
+exit RSpec::Daemon::ClientCli.start(ARGV)
