@@ -6,7 +6,6 @@ require_relative "daemon/configuration"
 require "socket"
 require "stringio"
 require "rspec"
-require "pry"
 
 module RSpec
   class Daemon
