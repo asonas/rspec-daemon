@@ -1,3 +1,7 @@
+## [1.1.0] - 2023-12-16
+
+-  Rails: Invoke autoreloading on every run #11 @osyoyu
+
 ## [1.0.1] - 2023-12-16
 
 -  Fix the method to start the test #9 @ta1kt0me
