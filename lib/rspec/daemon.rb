@@ -64,8 +64,15 @@ module RSpec
       RSpec.reset
 
       if cached_config.has_recorded_config?
+        # Reload configuration from the first time
         cached_config.replay_configuration
+        # Invoke auto reload
+        if defined?(::Rails) && ::Rails.configuration.reloading_enabled?
+          puts "Reloading..."
+          ::Rails.autoloaders.main.reload
+        end
       else
+        # This is the first spec run
         cached_config.record_configuration(&rspec_configuration)
       end
     end
