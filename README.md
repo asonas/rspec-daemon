@@ -15,17 +15,84 @@ gem 'rspec-daemon', require: false
 
 ## Usage
 
+Start the daemon process by running `rspec-daemon` in the directory where you would run `rspec`.
+
 ```
 $ cd YOUR_PROJECT
 $ bundle ex rspec-daemon
 Listening on tcp://0.0.0.0:3002
 ```
 
+To run specs, use the `rspeccc` client tool.
+
+```
+$ bundle ex rspeccc spec/models/user_spec.rb # arguments are passed to rspec
+
+User
+  is healthy
+
+Finished in 0.00136 seconds (files took 36.25 seconds to load)
+1 example, 0 failures
+```
+
+Alternatively, standard utilites such as `nc` may be used.
+
 ```
 $ echo 'spec/models/user_spec.rb' | nc -v 0.0.0.0 3002
 ```
 
 By default, `rspec-daemon` will run on port `3002`. You can adjust the port by passing `--port` to `rspec-daemon` or setting the `RSPEC_DAEMON_PORT` environment variable.
+
+## Editor integration
+
+### Vim/Neovim
+
+Add a key binding of your preference to your `.vimrc` or `init.vim`.
+
+```vim
+" Run specs under the current cursor line
+nnoremap <Leader>h :execute '!bundle exec rspeccc ' . expand('%:p') . ':' . line('.')<CR>
+```
+
+If you are using [rspec.vim](https://github.com/thoughtbot/vim-rspec), you may want to configure `g:rspec_command`.
+
+```vim
+" For rspec.vim users
+let g:rspec_command = "!bundle exec rspeccc {spec}"
+```
+
+### Visual Studio Code
+
+Tasks are a nice way to launch `rspeccc`.
+Here is an example `tasks.json` configuration which runs specs under the current cursor location:
+
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "rspec-remote: Cursor context",
+      "group": "test",
+      "type": "shell",
+      "command": "bundle exec rspeccc ${relativeFile}:${lineNumber}"
+    }
+  ]
+}
+```
+
+Adding a keybindings.json entry for your Task is also recommendable.
+
+```json
+[
+  {
+    "key": "cmd+h",
+    "command": "workbench.action.tasks.runTask",
+    "args": "rspec-remote: Cursor context"
+  }
+]
+```
+
+Refer to Visual Studio Code's documentation ([Integrate with External Tools via Tasks](https://go.microsoft.com/fwlink/?LinkId=733558)) for further customization.
 
 ## Development
 
