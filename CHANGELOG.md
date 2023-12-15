@@ -1,6 +1,8 @@
-## [Unreleased]
+## [1.0.1] - 2023-12-16
 
-## [1.0.0]
+-  Fix the method to start the test #9 @ta1kt0me
+
+## [1.0.0] - 2023-12-15
 
 - Make bind address and port configurable #7 @osyoyu
 - Remove pry dependency #6 @osyoyu
