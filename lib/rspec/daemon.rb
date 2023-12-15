@@ -72,6 +72,7 @@ module RSpec
 
     def rspec_configuration
       proc do
+        ENV['RSPEC_DAEMON'] = "1"
         if File.exist? "spec/rails_helper.rb"
           require "rails_helper"
         end
