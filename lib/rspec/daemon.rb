@@ -66,8 +66,8 @@ module RSpec
       if cached_config.has_recorded_config?
         # Reload configuration from the first time
         cached_config.replay_configuration
-        # Invoke auto reload
-        if defined?(::Rails) && ::Rails.configuration.reloading_enabled?
+        # Invoke auto reload (if Rails is in Zeitwerk mode and autoloading is enabled)
+        if defined?(::Rails) && Rails.respond_to?(:autoloaders) && !::Rails.configuration.cache_classes?
           puts "Reloading..."
           ::Rails.autoloaders.main.reload
         end

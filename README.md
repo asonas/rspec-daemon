@@ -55,6 +55,14 @@ if Rails.env.test? && ENV['RSPEC_DAEMON']
 end
 ```
 
+For Rails earlier than 7.0
+
+```
+if Rails.env.test? && ENV['RSPEC_DAEMON']
+  Rails.configuration.cache_classes = true
+end
+```
+
 If autoreloading is not configured, you'd need to restart `rspec-daemon` every time you change code under `app/`.
 Spec code (under `spec/`) will be always reloaded regardless of this setting.
 
