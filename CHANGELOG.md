@@ -1,3 +1,7 @@
+## [1.1.1] - 2023-12-18
+
+- Compatibility update for rspec-daemon with Rails < 7.0 #12 @asonas w/ @osyoyu
+
 ## [1.1.0] - 2023-12-16
 
 -  Rails: Invoke autoreloading on every run #11 @osyoyu
