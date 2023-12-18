@@ -57,7 +57,7 @@ end
 
 For Rails earlier than 7.0
 
-```
+```ruby
 if Rails.env.test? && ENV['RSPEC_DAEMON']
   Rails.configuration.cache_classes = true
 end
